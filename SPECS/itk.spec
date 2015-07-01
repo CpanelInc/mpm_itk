@@ -6,7 +6,7 @@
 %global pnum 02
 
 Summary: Run all httpd process under user's access rights.
-Name: %{ns_name}-%{module_name}
+Name: %{ns_name}-mod_%{module_name}
 Version: %{vnum}
 Vendor: cPanel, Inc.
 Release: %{pnum}%{dist}.0
