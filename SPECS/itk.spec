@@ -9,7 +9,7 @@ Summary: Run all httpd process under user's access rights.
 Name: %{ns_name}-mod_%{module_name}
 Version: %{vnum}
 Vendor: cPanel, Inc.
-Release: %{pnum}%{dist}.0
+Release: %{pnum}%{dist}.1
 Group: System Environment/Daemons
 URL: http://mpm-itk.sesse.net/
 Source0: http://mpm-itk.sesse.net/mpm-itk-2.4.7-02.tar.gz
@@ -29,7 +29,7 @@ BuildRequires: libtool
 Requires: %{ns_name}-mpm = forked
 Requires: %{ns_name}-mmn = %{_httpd_mmn}
 Requires: libcap
-Conflicts: %{ns_name}-mod_ruid2 %{ns_name}-mod_suexec %{ns_name}-mod_suphp
+Conflicts: %{ns_name}-mod_ruid2 %{ns_name}-mod_suexec %{ns_name}-mod_suphp %{ns_name}-mod_mpm_event %{ns_name}-mod_mpm_worker
 Provides: %{ns_name}-exec_code_asuser
 
 %description
@@ -75,5 +75,8 @@ echo "LoadModule %{module_name}_module modules/%{module_name}.so" > %{buildroot}
 
 
 %changelog
+* Mon Oct 19 2015 Darren Mobley <darren@cpanel.net> 2.4.07-02-1
+- Added specific conflicts with uncompatible MPMs
+
 * Mon Jun 15 2015 S. Kurt Newman <kurt.newman@cpanel.net> 2.4.07-02-0
 - Initial creation
