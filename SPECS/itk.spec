@@ -3,16 +3,21 @@
 %global module_name mpm_itk
 
 %global vnum 2.4.7
-%global pnum 02
+# pnumtar is the patch release assigned by author (since author uses filename to assign revisions)
+# so, if you update pnumtar, you must update pnum so it can be used in the version we use in this package
+%global pnumtar 02
+%global pnum 2
 
 Summary: Run all httpd process under user's access rights.
 Name: %{ns_name}-mod_%{module_name}
-Version: %{vnum}
+Version: %{vnum}.%{pnum}
 Vendor: cPanel, Inc.
-Release: %{pnum}%{dist}.1
+# Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4564 for more details
+%define release_prefix 4
+Release: %{release_prefix}%{?dist}.cpanel
 Group: System Environment/Daemons
 URL: http://mpm-itk.sesse.net/
-Source0: http://mpm-itk.sesse.net/mpm-itk-2.4.7-02.tar.gz
+Source0: http://mpm-itk.sesse.net/mpm-itk-%{vnum}-%{pnumtar}.tar.gz
 Source1: http://www.apache.org/licenses/LICENSE-2.0.txt
 License: Apache Software License version 2
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
@@ -41,7 +46,7 @@ environment.
 
 %prep
 : Building %{name} %{version}-%{release} %{_arch} %{ns_name}-mmn = %{_httpd_mmn}
-%setup -q -n mpm-itk-%{version}-%{pnum}
+%setup -q -n mpm-itk-%{vnum}-%{pnumtar}
 %{__cp} %{SOURCE1} .
 
 %build
@@ -75,6 +80,9 @@ echo "LoadModule %{module_name}_module modules/%{module_name}.so" > %{buildroot}
 
 
 %changelog
+* Mon Jun 20 2016 Dan Muey <dan@cpanel.net> - 2.4.7.2-4
+- EA-4383: Update Release value to OBS-proof versioning
+
 * Mon Oct 19 2015 Darren Mobley <darren@cpanel.net> 2.4.07-02-1
 - Added specific conflicts with uncompatible MPMs
 
