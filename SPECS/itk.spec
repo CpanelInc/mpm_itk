@@ -13,7 +13,7 @@ Name: %{ns_name}-mod_%{module_name}
 Version: %{vnum}.%{pnum}
 Vendor: cPanel, Inc.
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4564 for more details
-%define release_prefix 4
+%define release_prefix 5
 Release: %{release_prefix}%{?dist}.cpanel
 Group: System Environment/Daemons
 URL: http://mpm-itk.sesse.net/
@@ -35,6 +35,7 @@ Requires: %{ns_name}-mpm = forked
 Requires: %{ns_name}-mmn = %{_httpd_mmn}
 Requires: libcap
 Conflicts: %{ns_name}-mod_ruid2 %{ns_name}-mod_suexec %{ns_name}-mod_suphp %{ns_name}-mod_mpm_event %{ns_name}-mod_mpm_worker
+Conflicts: %{ns_name}-mod_fcgid
 Provides: %{ns_name}-exec_code_asuser
 
 %description
@@ -80,6 +81,9 @@ echo "LoadModule %{module_name}_module modules/%{module_name}.so" > %{buildroot}
 
 
 %changelog
+* Tue Oct 18 2016 Edwin Buck <e.buck@cpanel.net> - 2.4.7.2-5
+- EA-5441: Make mod_fcid and mod_itk conflict with each other.
+
 * Mon Jun 20 2016 Dan Muey <dan@cpanel.net> - 2.4.7.2-4
 - EA-4383: Update Release value to OBS-proof versioning
 
