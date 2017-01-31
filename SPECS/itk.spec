@@ -82,7 +82,7 @@ echo "LoadModule %{module_name}_module modules/%{module_name}.so" > %{buildroot}
 
 %changelog
 * Tue Jan 31 2017 Tim Schoondergang <tim.schoondergang@timmit.nl> - 2.4.7.4
-- EA-4710: Update mod_itk to 2.4.7.4 so the ssl bug is fixed
+- EA-4714: Update mod_itk to 2.4.7-04 so the ssl bug is fixed
 
 * Tue Oct 18 2016 Edwin Buck <e.buck@cpanel.net> - 2.4.7.2-5
 - EA-5441: Make mod_fcid and mod_itk conflict with each other.
