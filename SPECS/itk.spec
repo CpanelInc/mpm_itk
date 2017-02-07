@@ -5,15 +5,15 @@
 %global vnum 2.4.7
 # pnumtar is the patch release assigned by author (since author uses filename to assign revisions)
 # so, if you update pnumtar, you must update pnum so it can be used in the version we use in this package
-%global pnumtar 02
-%global pnum 2
+%global pnumtar 04
+%global pnum 4
 
 Summary: Run all httpd process under user's access rights.
 Name: %{ns_name}-mod_%{module_name}
 Version: %{vnum}.%{pnum}
 Vendor: cPanel, Inc.
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4564 for more details
-%define release_prefix 5
+%define release_prefix 1
 Release: %{release_prefix}%{?dist}.cpanel
 Group: System Environment/Daemons
 URL: http://mpm-itk.sesse.net/
@@ -81,6 +81,9 @@ echo "LoadModule %{module_name}_module modules/%{module_name}.so" > %{buildroot}
 
 
 %changelog
+* Tue Feb 7 2017 Jacob Perkins <jacob.perkins@cpanel.net> - 2.4.7.4-1
+- EA-4714: Update mpm_itk for newest package
+
 * Tue Oct 18 2016 Edwin Buck <e.buck@cpanel.net> - 2.4.7.2-5
 - EA-5441: Make mod_fcid and mod_itk conflict with each other.
 
