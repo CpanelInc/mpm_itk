@@ -13,7 +13,7 @@ Name: %{ns_name}-mod_%{module_name}
 Version: %{vnum}.%{pnum}
 Vendor: cPanel, Inc.
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4564 for more details
-%define release_prefix 1
+%define release_prefix 2
 Release: %{release_prefix}%{?dist}.cpanel
 Group: System Environment/Daemons
 URL: http://mpm-itk.sesse.net/
@@ -36,6 +36,7 @@ Requires: %{ns_name}-mmn = %{_httpd_mmn}
 Requires: libcap
 Conflicts: %{ns_name}-mod_ruid2 %{ns_name}-mod_suexec %{ns_name}-mod_suphp %{ns_name}-mod_mpm_event %{ns_name}-mod_mpm_worker
 Conflicts: %{ns_name}-mod_fcgid
+Conflicts: %{ns_name}-mod_http2
 Provides: %{ns_name}-exec_code_asuser
 
 %description
@@ -81,6 +82,9 @@ echo "LoadModule %{module_name}_module modules/%{module_name}.so" > %{buildroot}
 
 
 %changelog
+* Thu Jun 15 2017 Jacob Perkins <jacob.perkins@cpanel.net> - 2.4.7.4-2
+- EA-6232: Add conflict for mod_http2
+
 * Tue Feb 7 2017 Jacob Perkins <jacob.perkins@cpanel.net> - 2.4.7.4-1
 - EA-4714: Update mpm_itk for newest package
 
