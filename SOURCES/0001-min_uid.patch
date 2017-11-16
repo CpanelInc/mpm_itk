@@ -1,0 +1,14 @@
+--- a/mpm_itk.c.orig	2017-11-15 12:54:23.214999837 -0600
++++ b/mpm_itk.c	2017-11-15 12:51:56.602999844 -0600
+@@ -86,9 +86,9 @@
+
+ /* config globals */
+
+-static uid_t ap_itk_min_uid=1;
++static uid_t ap_itk_min_uid=0;
+ static uid_t ap_itk_max_uid=UINT_MAX;
+-static gid_t ap_itk_min_gid=1;
++static gid_t ap_itk_min_gid=0;
+ static gid_t ap_itk_max_gid=UINT_MAX;
+
+ #if HAVE_LIBCAP
