@@ -13,7 +13,7 @@ Name: %{ns_name}-mod_%{module_name}
 Version: %{vnum}.%{pnum}
 Vendor: cPanel, Inc.
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4564 for more details
-%define release_prefix 2
+%define release_prefix 3
 Release: %{release_prefix}%{?dist}.cpanel
 Group: System Environment/Daemons
 URL: http://mpm-itk.sesse.net/
@@ -38,6 +38,7 @@ Conflicts: %{ns_name}-mod_ruid2 %{ns_name}-mod_suexec %{ns_name}-mod_suphp %{ns_
 Conflicts: %{ns_name}-mod_fcgid
 Conflicts: %{ns_name}-mod_http2
 Provides: %{ns_name}-exec_code_asuser
+Patch0: 0001-min_uid.patch
 
 %description
 This module allows you to run each virtual host as a separate uid/gid.  It depends on
@@ -50,6 +51,7 @@ environment.
 : Building %{name} %{version}-%{release} %{_arch} %{ns_name}-mmn = %{_httpd_mmn}
 %setup -q -n mpm-itk-%{vnum}-%{pnumtar}
 %{__cp} %{SOURCE1} .
+%patch0 -p1 -b .minuid
 
 %build
 %{configure} --with-apxs=%{_httpd_apxs} && make
@@ -82,6 +84,9 @@ echo "LoadModule %{module_name}_module modules/%{module_name}.so" > %{buildroot}
 
 
 %changelog
+* Wed Nov 15 2017 Cory McIntire <cory@cpanel.net> - 2.4.7.4-3
+- EA-6580: patch mpm_itk.c to allow UID/GID changes for sub processes
+
 * Thu Jun 15 2017 Jacob Perkins <jacob.perkins@cpanel.net> - 2.4.7.4-2
 - EA-6232: Add conflict for mod_http2
 
