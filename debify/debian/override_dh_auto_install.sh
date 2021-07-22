@@ -16,7 +16,7 @@ install -m0755 .libs/$module_name.so $DEB_INSTALL_ROOT$_httpd_moddir/
 #install README CHANGES $DEB_INSTALL_ROOT$_docdir
 # install apache config
 mkdir -p $DEB_INSTALL_ROOT$_httpd_modconfdir
-echo "LoadModule $module_name_module modules/$module_name.so" > $DEB_INSTALL_ROOT$_httpd_modconfdir/900-$module_name.conf
+echo "LoadModule ${module_name}_module modules/$module_name.so" > $DEB_INSTALL_ROOT$_httpd_modconfdir/900-$module_name.conf
 
 mkdir -p debian/tmp/usr/share/doc/$full_package_name
 

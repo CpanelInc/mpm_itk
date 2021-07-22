@@ -18,5 +18,11 @@
     "add_to_build_requires": [
         "ea-apr-util",
         "ea-apr"
-    ]
+    ],
+    "remove_from_requires": [
+        "libcap"
+    ],
+    "add_to_requires": {
+        "ea-apache24-mod-mpm-itk": [ "libcap2" ]
+    }
 }
