@@ -7,10 +7,12 @@
 # so, if you update pnumtar, you must update pnum so it can be used in the version we use in this package
 %global pnumtar 04
 %global pnum 4
+%global itk_version %{vnum}.%{pnum}
 
 Summary: Run all httpd process under user's access rights.
 Name: %{ns_name}-mod_%{module_name}
-Version: %{vnum}.%{pnum}
+# This needs to be one var in order for `et` to parse it correctly
+Version: %{itk_version}
 Vendor: cPanel, Inc.
 # Doing release_prefix this way for Release allows for OBS-proof versioning, See EA-4564 for more details
 %define release_prefix 4
